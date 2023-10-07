@@ -1,4 +1,4 @@
-package day_WebTables_ExcellOtomasyonu_ScreenShot;
+package day08_WebTables_ExcellOtomasyonu_ScreenShot;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
