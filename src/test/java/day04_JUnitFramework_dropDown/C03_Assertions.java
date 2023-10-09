@@ -55,6 +55,7 @@ public class C03_Assertions {
     }
 
     public void logoTesti(){
+//		○ logoTest => BestBuy logosunun görüntülendigini test edin
 
         WebElement logoElementi=driver.findElement(By.xpath("(//img[@alt='Best Buy Logo'])[1]"));
 
@@ -64,6 +65,8 @@ public class C03_Assertions {
 
     @Test
     public void francaisTesti(){
+        //		○ FrancaisLinkTest => Fransizca Linkin görüntülendiğini test edin
+
         WebElement francaisElementi=driver.findElement(By.xpath("//button[text()='Français']"));
 
         Assert.assertTrue(francaisElementi.isDisplayed());
