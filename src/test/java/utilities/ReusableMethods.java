@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,5 +53,21 @@ public class ReusableMethods {
         2. methodda dosya ismine tarih etikesi ekleyelim.
 
          */
+    }
+    public static void webElementScreenShotCek(WebElement istenenWebElement, String screenShotIsmi){
+        LocalDateTime localDateTime=LocalDateTime.now();
+        DateTimeFormatter istenenFormat=DateTimeFormatter.ofPattern("yyMMddHHmm");
+        localDateTime.format(istenenFormat);
+
+        String dinamikDosyaAdi="target\\screenshots\\"+screenShotIsmi+
+                localDateTime.format(istenenFormat)+".jpg";
+        File webElementSS=new File(dinamikDosyaAdi);
+
+        File gececiDosya=istenenWebElement.getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(gececiDosya,webElementSS);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
