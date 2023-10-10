@@ -29,7 +29,7 @@ public class C06_RadioButton {
 }
 
 @Test
-    public void radioButtunTesti(){
+    public void radioButtunTesti() throws InterruptedException {
     //a. Verilen web sayfasına gidin.
     //	     https://facebook.com
 
@@ -37,11 +37,12 @@ public class C06_RadioButton {
     //	b. Cookies’i kabul edin
     //	c. Create an account buton’una basin
     driver.findElement(By.xpath("(//a[@role='button'])[2]")).click();
-
+    Thread.sleep(2000);
     //	d. Radio button elementlerini locate edin ve
     //	size uygun olani secin
     WebElement erkekButonu=driver.findElement(By.xpath("(//input[@name='sex'])[2]"));
     erkekButonu.click();
+    Thread.sleep(2000);
     //	e. Sectiginiz radio button’un seçili,
     //	ötekilerin seçili olmadigini test edin
     WebElement kadinButonu=driver.findElement(By.xpath("(//input[@name='sex'])[1]"));
