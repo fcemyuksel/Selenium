@@ -15,7 +15,7 @@ public class C04_IFrame extends TestBase {
         //	- “An IFrame containing….” textinin erisilebilir oldugunu test edin ve  konsolda yazdirin.
        WebElement anIframeElementi=driver.findElement(By.tagName("h3"));
         Assert.assertTrue(anIframeElementi.isEnabled());
-        System.out.println(anIframeElementi.getText());
+        System.out.println("An Iframe text: "+anIframeElementi.getText());
         //kullanmak istedigimiz webelement iframe icindeyse
         //direkt kullanamayiz. once iframe'i locate edip, iFrame'e gecis yapmaliyiz
         WebElement iFrameElementi=driver.findElement(By.id("mce_0_ifr"));
@@ -25,18 +25,18 @@ public class C04_IFrame extends TestBase {
         Thread.sleep(3000);
         //	- Text Box’a “Merhaba Dunya!” yazin.
         textBoxElementi.sendKeys("Merhaba Dunya!");
-
+        Thread.sleep(3000);
         /*
         bir web sayfasınıın icinde bulunan iframe'e gecis yaptiktan sonra
         yeniden ana sayfaya gecis yapmak gerekir
          */
 
         //	- TextBox’in altinda bulunan “Elemental Selenium” linkini
-        //	textinin gorunur oldugunu dogrulayin ve  konsolda yazdirin.
+        //	textinin gorunur oldugunu dogrulayin ve  konsolda yazdirin.
         driver.switchTo().defaultContent();
         WebElement elementalSeleniumElementi=driver.findElement(By.linkText("Elemental Selenium"));
 
-        System.out.println(elementalSeleniumElementi);
+        System.out.println("elemental selenium: "+elementalSeleniumElementi);
 
         Thread.sleep(3000);
     }
