@@ -25,6 +25,7 @@ public class C01_dropDownMenu extends TestBase_BeforeClass {
             select=new Select(menuElementi);
 
             int expectedKategoriSayisi=45;
+
             List<WebElement> kategoriList=select.getOptions();
             int actualKategoriSayisi=kategoriList.size();
             Assert.assertEquals(expectedKategoriSayisi,actualKategoriSayisi);
