@@ -13,7 +13,7 @@ public class C03_BasicAuthentication extends TestBase {
         //1- Bir class olusturun : BasicAuthentication
         //2- https://the-internet.herokuapp.com/basic_auth sayfasina gidin
         driver.get("https://admin:admin@the-internet.herokuapp.com/basic_auth");
-
+        //Thread.sleep(5000);
         //3- asagidaki yontem ve test datalarini kullanarak authentication’i yapin
         //
         //Html komutu : https://username:password@URL
@@ -21,8 +21,10 @@ public class C03_BasicAuthentication extends TestBase {
         // 	password      : admin
         //
         //4- Basarili sekilde sayfaya girildigini dogrulayin
-        WebElement congratsElementi=driver.findElement(By.xpath("//p[contains(text(),'Congratulations!')]"));
+        //WebElement congratsElementi=driver.findElement(By.xpath("//p[contains(text(),'Congratulations!')]"));
+        WebElement congratsElementi=driver.findElement(By.tagName("p"));
+
         Assert.assertTrue(congratsElementi.isDisplayed());
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
     }
 }
