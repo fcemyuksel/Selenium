@@ -56,6 +56,7 @@ public class C06_KontrolsuzCokluPencere extends TestBase {
                 ikinciSayfaWhd=each;
             }
         }
+
         System.out.println("ilk sayfa whd: " +ilkSayfaWhd);
         System.out.println("ikinci sayfa whd:" +ikinciSayfaWhd);
         //● Acilan yeni pencerenin sayfa başlığının (title) “New Window” oldugunu dogrulayin.
