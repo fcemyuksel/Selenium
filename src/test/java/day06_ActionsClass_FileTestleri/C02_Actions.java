@@ -19,6 +19,7 @@ public class C02_Actions extends TestBase {
 
         Actions actions=new Actions(driver);
         actions.dragAndDrop(dragMeElementi,dropHereElementi).perform();
+
         //3- “Drop here” yazisi yerine “Dropped!” oldugunu test edin
         String expectedYazi="Dropped!";
         WebElement droppedYazsiElementi=dragMeElementi.findElement(By.xpath("//div/p[text()='Dropped!']"));

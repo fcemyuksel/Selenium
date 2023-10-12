@@ -20,8 +20,9 @@ public class C03_Actions extends TestBase {
         actions.moveToElement(accountsElementi).perform();
         //3- “Create a list” butonuna basin
         driver.findElement(By.xpath("//span[text()='Create a List']")).click();
-        //4- Acilan sayfada “Your Lists” yazisi oldugunu test edin
+        //4- Acilan sayfada “Your Lists” yazisi oldugunu test edin
         WebElement yourListElementi=driver.findElement(By.xpath("//*[@*='my-lists-tab']"));
+        System.out.println("aranan element: "+yourListElementi.getText());
         Assert.assertTrue(yourListElementi.isDisplayed());
         Thread.sleep(3000);
 

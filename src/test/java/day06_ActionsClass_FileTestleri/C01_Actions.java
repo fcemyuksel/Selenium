@@ -48,12 +48,12 @@ public class C01_Actions extends TestBase {
             }
         }
         //artik ikinci sayfa whd sahibiz
-        //bunu kullanarak driveri
+        //bunu kullanarak driveri ikinci taba gecirebiliriz
         driver.switchTo().window(ikinciSayfaWhd);
 
 
 
-    //7- Acilan sayfada h1 taginda “Make sure your code lands” yazdigini test edelim
+    //7- Acilan sayfada h1 taginda “Make sure your code lands” yazdigini test edelim
         WebElement yaziElementi=driver.findElement(By.tagName("h1"));
         String expectedYazi="Make sure your code lands";
         String actualYazi=yaziElementi.getText();
