@@ -26,7 +26,18 @@ public class C04_KlavyeActions extends TestBase {
                 .keyDown(Keys.SHIFT)
                 .sendKeys("a")
                 .keyUp(Keys.SHIFT)
-                .sendKeys("71").perform();
+                .sendKeys("71")
+                .sendKeys(" ")
+                .keyDown(Keys.SHIFT)
+                .sendKeys("c")
+                .keyUp(Keys.SHIFT)
+                .sendKeys("ase")
+                .sendKeys(" ")
+                .keyDown(Keys.SHIFT)
+                .sendKeys("c")
+                .keyUp(Keys.SHIFT)
+                .sendKeys("over")
+                .perform();
         //ve Enter’a basarak arama yaptirin
         aramaKutusu.sendKeys(Keys.ENTER);
         //4- aramanin gerceklestigini test edin
@@ -35,7 +46,7 @@ public class C04_KlavyeActions extends TestBase {
 
         String expectedEIcerik="Samsung A71";
         String actualIcerik=sonucElementi.getText();
-        Assert.assertEquals(expectedEIcerik,actualIcerik);
-        Thread.sleep(5000);
+        Assert.assertTrue(actualIcerik.contains(expectedEIcerik));
+        Thread.sleep(2000);
     }
 }
