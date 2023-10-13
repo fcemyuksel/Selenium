@@ -24,8 +24,8 @@ public class C08_DosyaIndirmeTesti extends TestBase {
         dosya herkesin download klasörüne indirildi
         oncelikle dinamik dosya yolunu hazirlamaliyiz
          */
-        //String dinamikDosyaYolu=System.getProperty("user.home")
-                //+"\\downloads\\sample.png";
+        String dinamikDosyaYolu=System.getProperty("user.home")
+                +"\\downloads\\sample.png";
 
         System.out.println("C:\\downloads\\sample.png"); //C:\Users\Dell\sample.png
 
