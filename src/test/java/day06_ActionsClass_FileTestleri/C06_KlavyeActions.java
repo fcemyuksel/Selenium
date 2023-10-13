@@ -13,7 +13,7 @@ public class C06_KlavyeActions extends TestBase {
     public void test01() throws InterruptedException {
         //2- https://html.com/tags/iframe/ sayfasina gidelim
         driver.get("https://html.com/tags/iframe/");
-        Thread.sleep(4000);
+        Thread.sleep(1000);
         //3- video’yu gorecek kadar asagi inin
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.PAGE_DOWN)
@@ -24,13 +24,13 @@ public class C06_KlavyeActions extends TestBase {
         // video iframe icinde oldugundan once o iframe'e gecis yapmaliyiz
         WebElement iframeElementi= driver.findElement(By.xpath("//iframe[@src='https://www.youtube.com/embed/owsfdh4gxyc']"));
         driver.switchTo().frame(iframeElementi);
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
 
-        driver.findElement(By.xpath("//*[@id=\"movie_player\"]/a")).click();
+        driver.findElement(By.xpath("//button[@aria-label='Oynat']")).click();
         //5- videoyu calistirdiginizi test edin
         Thread.sleep(3000);
-        WebElement kontrolLogo= driver.findElement(By.xpath("(//a[@aria-label='Watch on YouTube'])[2]"));
+        WebElement kontrolLogo= driver.findElement(By.xpath("(//a[@aria-label=\"YouTube'da izle\"])[2]"));
         Assert.assertTrue(kontrolLogo.isDisplayed());
         Thread.sleep(3000);
     }
