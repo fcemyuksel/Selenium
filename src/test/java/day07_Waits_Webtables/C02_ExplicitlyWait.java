@@ -23,22 +23,22 @@ public class C02_ExplicitlyWait {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         //2. https://the-internet.herokuapp.com/dynamic_controls adresine gidin.
         driver.get("https://the-internet.herokuapp.com/dynamic_controls");
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         //3. Remove butonuna tıklayın ve it's gone! yazisi cikincaya kadar bekleyin
         driver.findElement(By.xpath("//*[text()='Remove']")).click();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         //4. “It’s gone!” mesajinin goruntulendigini dogrulayın.
         WebElement itsGoneElementi=driver.findElement(By.xpath("//*[text()=\"It's gone!\"]"));
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         Assert.assertTrue(itsGoneElementi.isDisplayed());
         //5. Add butonuna tıklayın ve it's back! yazisi cikincaya kadar bekleyin
         driver.findElement(By.xpath("//*[text()=\"Add\"]")).click();
-        Thread.sleep(2000);
-        //6. “It’s back!” mesajinin goruntulendigini dogrulayın.
+        //Thread.sleep(2000);
+        //6. “It’s back!” mesajinin goruntulendigini dogrulayın.
         WebElement itsBackElementi=driver.findElement(By.xpath("//*[text()=\"It's back!\"]"));
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         Assert.assertTrue(itsBackElementi.isDisplayed());
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
         driver.close();
 
     }
