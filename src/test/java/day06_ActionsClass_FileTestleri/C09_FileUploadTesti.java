@@ -14,11 +14,19 @@ public class C09_FileUploadTesti extends TestBase {
         driver.get("https://the-internet.herokuapp.com/upload");
         //chooseFile butonuna basalim
         System.out.println(System.getProperty("user.dir"));
-        String dinamikDosyaYolu=System.getProperty("user.dir")+ "\\src\\test\\java\\day06_ActionsClass_FileTestleri\\deneme.txt";
+        //Bilgisayardaki kullanici ana dosyasinin dosya yolu:C:\Users\ASUS\IdeaProjects\Selenium
+        System.out.println(System.getProperty("user.dir"));
+        //C:\Users\ASUS\IdeaProjects\Selenium
+        // deneme.txt dosya yolu:
+        //C:\Users\ASUS\IdeaProjects\Selenium\src\test\java\day06_ActionsClass_FileTestleri\deneme.txt
+        //src/test/java/day06_ActionsClass_FileTestleri/deneme.txt
+
+        String dinamikDosyaYolu=System.getProperty("user.dir")+"/src/test/java/day06_ActionsClass_FileTestleri/deneme.txt";
 
         //Yuklemek istediginiz dosyayi secelim.
         WebElement fileUploadYolu=driver.findElement(By.id("file-upload"));
         fileUploadYolu.sendKeys(dinamikDosyaYolu);
+        Thread.sleep(3000);
         //Upload butonuna basalim.
         driver.findElement(By.id("file-submit")).click();
         //“File Uploaded!” textinin goruntulendigini test edelim.
