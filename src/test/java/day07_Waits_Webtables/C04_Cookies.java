@@ -14,6 +14,8 @@ public class C04_Cookies extends TestBase {
         driver.get("https://www.amazon.com");
         //2- tum cookie’leri listeleyin
         Set<Cookie> cookieSeti= driver.manage().getCookies();
+        System.out.println(cookieSeti);
+
         int siraNo=1;
         for (Cookie each:cookieSeti
              ) {
@@ -23,14 +25,16 @@ public class C04_Cookies extends TestBase {
         //3- Sayfadaki cookies sayisinin 5’den buyuk oldugunu test edin
         int expectedMinimumCookieSayisi=5;
         int actualCookieSayisi=cookieSeti.size();
-        Assert.assertTrue(actualCookieSayisi>expectedMinimumCookieSayisi);
+        Assert.assertTrue(actualCookieSayisi > expectedMinimumCookieSayisi);
         //4- ismi i18n-prefs olan cookie degerinin USD oldugunu test edin
         String expectedCookieDegeri="USD";
         String actualCookieDegeri=driver.manage().getCookieNamed("i18n-prefs").getValue();
         Assert.assertEquals(expectedCookieDegeri,actualCookieDegeri);
         //5- ismi “en sevdigim cookie” ve degeri “cikolatali” olan bir cookie olusturun ve sayfaya ekleyin
         Cookie cikolataliCookie=new Cookie("en sevdigim cookie","cikolatali");
+        Cookie uzumluCokie= new Cookie("yeni cookie","uzumlu");
         driver.manage().addCookie(cikolataliCookie);
+        driver.manage().addCookie(uzumluCokie);
 
         cookieSeti= driver.manage().getCookies();
         System.out.println("=====================");
@@ -79,7 +83,7 @@ public class C04_Cookies extends TestBase {
         int expectedCookisetiSize=0;
         int actualSize=cookieSeti.size();
         System.out.println("=====================");
-        System.out.println("tum cookiler silinince cookieseti: "+ cookieSeti);
+        System.out.println("tum cookiler silinince cookie seti: "+ cookieSeti);
         Assert.assertEquals(expectedCookisetiSize,actualSize);
 
     }
