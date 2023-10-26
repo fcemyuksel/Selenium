@@ -65,8 +65,8 @@ public class C06_Before_AfterNotasyonlari {
     public void youtubeTest() throws InterruptedException {
 
         driver.get("https://www.youtube.com");
-        String expectedIcerik="google";
-        String actualTitle=driver.getTitle();
+        String expectedIcerik="youtube";
+        String actualTitle=driver.getCurrentUrl();
         if (actualTitle.contains(expectedIcerik)){
             System.out.println("youtube testi PASSED");
         }else {
@@ -78,7 +78,7 @@ public class C06_Before_AfterNotasyonlari {
     public void amazonTest() throws InterruptedException {
 
         driver.get("https://www.amazon.com");
-        String expectedIcerik="google";
+        String expectedIcerik="Amazon";
         String actualTitle=driver.getTitle();
         if (actualTitle.contains(expectedIcerik)){
             System.out.println("amazon testi PASSED");
