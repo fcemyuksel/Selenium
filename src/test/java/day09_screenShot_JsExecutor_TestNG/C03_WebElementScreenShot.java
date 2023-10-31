@@ -30,7 +30,7 @@ public class C03_WebElementScreenShot extends TestBase {
 
         driver.findElement(By.xpath("(//div[@class='a-section aok-relative s-image-square-aspect'])[1]"))
          .click();
-// urun isminin Nutella icerdigini test edin ve screenshot alin
+// urun isminin Nutella icerdigini test edin ve screenshot alin
 
         WebElement urunIsmiElementi= driver.findElement(By.xpath("//h1[@id='title']"));
 
