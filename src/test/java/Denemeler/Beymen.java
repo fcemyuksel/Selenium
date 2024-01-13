@@ -71,6 +71,7 @@ public class Beymen {
         searchBoxelement.sendKeys(cell.getStringCellValue());
         Thread.sleep(1000);
 
+        //yazilan kelime silinir
         driver.findElement(By.xpath("//button[@class='o-header__search--close -hasButton']")).click();
         Thread.sleep(1000);
 
@@ -91,7 +92,7 @@ public class Beymen {
         Random random = new Random();
         int randomIndex = random.nextInt(productList.size());
         WebElement selectedProduct = productList.get(randomIndex);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         // Seçilen ürünü tıkla
         selectedProduct.click();
 
@@ -110,26 +111,33 @@ public class Beymen {
             bedenElementi.get(index).click();
         }else {
             bedenElementi=driver.findElements(By.xpath("//span[@class='m-variation__item -criticalStock']"));
-         index=0;
-         bedenElementi.get(index).click();
+            index=0;
+            bedenElementi.get(index).click();
         }
-
-        Thread.sleep(3000);
 
         WebElement secilenUrunBilgisi=driver.findElement(By.xpath("//*[@class='o-productDetail__title']"));
         System.out.println(secilenUrunBilgisi.getText());
-        WebElement secilenUrunFiyat=driver.findElement(By.xpath("//*[@class='m-price__new']"));
-        String secilenUrunFiyatText = secilenUrunFiyat.getText();
+        WebElement secilenUrunFiyat=driver.findElement(By.xpath("//*[@id='priceNew']"));
         System.out.println(secilenUrunFiyat.getText());
-
-
-
-// Dosya yolu ve adını belirtin
-        String dosyaYolu1 = "src/test/java/Denemeler/deneme1.txt";
-
+        String input1 = secilenUrunFiyat.getText();
         // Yazılacak metin
         String metin = secilenUrunBilgisi.getText();
         String metin1=secilenUrunFiyat.getText();
+
+        Thread.sleep(1000);
+        //- Seçilen ürün sepete eklenir.
+        WebElement sepeteEkleElementi=driver.findElement(By.xpath("//button[@id='addBasket']"));
+        sepeteEkleElementi.click();
+        Thread.sleep(1000);
+        //- Ürün sayfasındaki fiyat ile sepette yer alan ürün fiyatının doğruluğu karşılaştırılır.
+        WebElement sepetimElementi=driver.findElement(By.xpath("//*[@class='icon icon-cart icon-cart-active']"));
+        sepetimElementi.click();
+        Thread.sleep(1000);
+
+        // Dosya yolu ve adını belirtin
+        String dosyaYolu1 = "src/test/java/Denemeler/Beymen.txt";
+
+
         try {
             // FileWriter ile dosyayı aç
             FileWriter dosyaYazici = new FileWriter(new File(dosyaYolu1), true);
@@ -149,33 +157,38 @@ public class Beymen {
             System.out.println("Metin dosyaya başarıyla yazıldı.");
         } catch (IOException e) {
             System.err.println("Dosyaya yazma hatası: " + e.getMessage());
-}
-        Thread.sleep(3000);
+        }
+        Thread.sleep(1000);
 
 
-        //- Seçilen ürün sepete eklenir.
-        WebElement sepeteEkleElementi=driver.findElement(By.xpath("//button[@id='addBasket']"));
-        sepeteEkleElementi.click();
-        Thread.sleep(3000);
-        //- Ürün sayfasındaki fiyat ile sepette yer alan ürün fiyatının doğruluğu karşılaştırılır.
-        WebElement sepetimElementi=driver.findElement(By.xpath("//*[@class='icon icon-cart icon-cart-active']"));
-        sepetimElementi.click();
+
 
 
         WebElement sepettekiUrunFiyati=driver.findElement(By.xpath("//span[@class='m-productPrice__salePrice']"));
 
-        String sepettekiUrunFiyatiText = sepettekiUrunFiyati.getText();
+        String input2 = sepettekiUrunFiyati.getText();
 
-        sepettekiUrunFiyatiText=sepettekiUrunFiyatiText.substring(0,sepettekiUrunFiyatiText.length()-2);
+        String sadeceSayilar1= input1.replaceAll("\\D","");
+        String sadeceSayilar2= input2.replaceAll("\\D","");
 
-        String sadeceSayilar1= secilenUrunFiyatText.replaceAll("\\D","");
-        String sadeceSayilar2= sepettekiUrunFiyatiText.replaceAll("\\D","");
 
-        int secilenUrunFiyatiInt = Integer.parseInt(sadeceSayilar1);
-        int sepettekiUrunFiyatiInt = Integer.parseInt(sadeceSayilar2);
+        int tutar1 = Integer.parseInt(sadeceSayilar1);
+        int tutar2 = Integer.parseInt(sadeceSayilar2);
+        System.out.println(tutar1);
+        System.out.println(tutar2);
+        Assert.assertEquals(tutar2,tutar1);
 
-        Assert.assertEquals(secilenUrunFiyatiInt,secilenUrunFiyatiInt);
+        //Assert.assertEquals(sayi1,sayi2);
 
+        // Dosyayı kaydet
+        try (FileOutputStream fileOut = new FileOutputStream("src/test/java/Denemeler/Beymen.xlsx")) {
+            workbook.write(fileOut);
+            System.out.println("Rastgele ürün bilgileri dosyaya yazıldı.");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
         //- Adet arttırılarak ürün adedinin 2 olduğu doğrulanır.
@@ -183,9 +196,9 @@ public class Beymen {
         Select select=new Select(dropDownMenu);
         select.selectByIndex(1);
         String expectedAdet="2 adet";
-        String actualAdet=dropDownMenu.getText();
-//        --------------------- DOGRULAMA SORUNU-----------------------
-        //Assert.assertEquals(expectedAdet,actualAdet);
+        String actualAdet=select.getFirstSelectedOption().getText();
+        System.out.println(actualAdet);
+        Assert.assertEquals(expectedAdet,actualAdet);
 
         //- Ürün sepetten silinerek sepetin boş olduğu kontrol edilir.
         WebElement silElementi=driver.findElement(By.xpath("//button[@id='removeCartItemBtn0-key-0']"));
@@ -193,9 +206,8 @@ public class Beymen {
         WebElement bosSepetElementi=driver.findElement(By.xpath("//*[text()='Sepetinizde Ürün Bulunmamaktadır']"));
         Assert.assertTrue(bosSepetElementi.isDisplayed());
 
-        Thread.sleep(3000);
-       // driver.close();
 
+        driver.close();
     }
 
 
