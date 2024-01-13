@@ -11,18 +11,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 
 public class Beymen {
     Sheet sayfa1;
@@ -170,10 +162,10 @@ public class Beymen {
 
         String sadeceSayilar1= input1.replaceAll("\\D","");
         String sadeceSayilar2= input2.replaceAll("\\D","");
-
+        Thread.sleep(1000);
 
         int tutar1 = Integer.parseInt(sadeceSayilar1);
-        int tutar2 = Integer.parseInt(sadeceSayilar2);
+        int tutar2 = Integer.parseInt(sadeceSayilar2)/100;
         System.out.println(tutar1);
         System.out.println(tutar2);
         Assert.assertEquals(tutar2,tutar1);

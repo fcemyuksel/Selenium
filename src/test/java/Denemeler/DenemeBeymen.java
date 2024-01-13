@@ -162,11 +162,15 @@ public class DenemeBeymen {
 
         String sadeceSayilar1= input1.replaceAll("\\D","");
         String sadeceSayilar2= input2.replaceAll("\\D","");
+        Thread.sleep(1000);
 
+        int tutar1 = Integer.parseInt(sadeceSayilar1);
+        int tutar2 = Integer.parseInt(sadeceSayilar2)/100;
+        System.out.println(tutar1);
+        System.out.println(tutar2);
+        Assert.assertEquals(tutar2,tutar1);
 
-        int sayi1 = Integer.parseInt(sadeceSayilar1);
-        int sayi2 = Integer.parseInt(sadeceSayilar2);
-
+        //Assert.assertEquals(sayi1,sayi2);
 
         // Dosyayı kaydet
         try (FileOutputStream fileOut = new FileOutputStream("src/test/java/Denemeler/Beymen.xlsx")) {
