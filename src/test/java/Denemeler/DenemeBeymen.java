@@ -63,6 +63,7 @@ public class DenemeBeymen {
         searchBoxelement.sendKeys(cell.getStringCellValue());
         Thread.sleep(1000);
 
+        //yazilan kelime silinir
         driver.findElement(By.xpath("//button[@class='o-header__search--close -hasButton']")).click();
         Thread.sleep(1000);
 
@@ -170,7 +171,7 @@ public class DenemeBeymen {
         // Dosyayı kaydet
         try (FileOutputStream fileOut = new FileOutputStream("src/test/java/Denemeler/Beymen.xlsx")) {
             workbook.write(fileOut);
-            System.out.println("Rastgele ürün bilgileri Excel dosyasına yazıldı.");
+            System.out.println("Rastgele ürün bilgileri dosyaya yazıldı.");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -183,7 +184,8 @@ public class DenemeBeymen {
         Select select=new Select(dropDownMenu);
         select.selectByIndex(1);
         String expectedAdet="2 adet";
-        String actualAdet=dropDownMenu.getText();
+        String actualAdet=select.getFirstSelectedOption().getText();
+        System.out.println(actualAdet);
         Assert.assertEquals(expectedAdet,actualAdet);
 
         //- Ürün sepetten silinerek sepetin boş olduğu kontrol edilir.
@@ -193,6 +195,7 @@ public class DenemeBeymen {
         Assert.assertTrue(bosSepetElementi.isDisplayed());
 
 
+        driver.close();
     }
 
 
